@@ -1,0 +1,96 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+
+const Home = () => {
+  return (
+    <Container style={{height:"100vh", display:"flex", justifyContent:"center", alignItems:"center"}}>
+      <Row>
+        <Col className='text-center'>
+          <h1 style={{}}>Bienvenido a la API de Rick and Morty</h1>
+          <p className='lead'>Explora la lista de personajes del universo de Rick and Morty.</p>
+          <Button variant="secondary" as={Link} to="/characters">
+            Ver personajes
+          </Button>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
+
+export default Home;
+
+filtro.css
+select {
+    transition: all 0.3s ease;
+    outline: none;
+    padding: 5px;
+    font-size: 12px;
+    border: 1px solid #0dd6b18a;
+    border-radius: 4px;
+  }
+  
+  select:focus {
+    border-color: #00ff48;
+    box-shadow: 0 0 5px rgba(89, 255, 0, 0.5);
+    transform: scale(1.05);
+  }
+
+navegacion
+
+import React from 'react';
+import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+const Navigation = () => {
+  return (
+    <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
+      <Navbar.Brand as={Link} to="/">Rick and Morty</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link as={Link} to="/">Home</Nav.Link>
+          <Nav.Link as={Link} to="/characters">Characters</Nav.Link>
+          <Nav.Link href='https://www.rickandmortyapi.com' target='_blank'>API</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
+};
+
+export default Navigation;
+
+app.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './componentes/Home';
+import CharacterList from './componentes/CharacterList';
+import Navigation from './componentes/Navigation';
+import backgroundGif from "./Imagenes/Portal.gif";
+
+const App = () => {
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${backgroundGif})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
+        backgroundPosition: 'center',
+        minHeight: '100vh', // Asegura que el fondo cubra toda la altura de la pantalla
+      }}
+    >
+      <Router>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/characters" element={<CharacterList />} />
+        </Routes>
+      </Router>
+    </div>
+  );
+};
+
+export default App;
+
+  
